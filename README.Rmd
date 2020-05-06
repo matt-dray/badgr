@@ -35,7 +35,7 @@ You can [donate to or back shields.io](https://opencollective.com/shields) and c
 
 You can install {badgr} from GitHub with:
 
-```{r}
+```{r, eval=FALSE}
 remotes::install_github("matt-dray/badgr")
 ```
 

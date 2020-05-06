@@ -32,21 +32,6 @@ You can install {badgr} from GitHub with:
 
 ``` r
 remotes::install_github("matt-dray/badgr")
-#> Using github PAT from envvar GITHUB_PAT
-#> Downloading GitHub repo matt-dray/badgr@master
-#> 
-#>      checking for file ‘/private/var/folders/wv/bnfskhcs4psgdgg64xcgwk5sldfnv6/T/RtmpMFk6sJ/remotes35947d7aaeab/matt-dray-badgr-498fccf/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/wv/bnfskhcs4psgdgg64xcgwk5sldfnv6/T/RtmpMFk6sJ/remotes35947d7aaeab/matt-dray-badgr-498fccf/DESCRIPTION’ (350ms)
-#>   ─  preparing ‘badgr’:
-#>      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
-#>   ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
-#>   ─  building ‘badgr_0.0.0.9000.tar.gz’
-#>      Warning: invalid uid value replaced by that for user 'nobody'
-#>      Warning: invalid gid value replaced by that for user 'nobody'
-#>    
-#> 
-#> Installing package into '/Users/matt.dray/Library/R/3.6/library'
-#> (as 'lib' is unspecified)
 ```
 
 It’s a work in progress and there are no guarantees.
