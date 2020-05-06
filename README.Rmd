@@ -65,7 +65,7 @@ Which when rendered, looks like this:
 
 ![](https://img.shields.io/badge/Left bit-Right bit-blue)
 
-By default:
+By default for `get_badge_static()`:
 
 * the endpoint will be opened in your browser (`open_browser = TRUE`)
 * Markdown notation for displaying the badge (`![]()`) will be added (`add_markdown = TRUE`)
