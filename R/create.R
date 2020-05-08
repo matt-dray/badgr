@@ -69,8 +69,8 @@ get_badge <- function(
     )
   }
 
-  if (is.null(logo_simple) & (!is.null(logo_color) | !is.null(logo_width))) {
-    warning("You set logo_color/logo_width without specifying 'logo_simple'")
+  if (is.null(logo_simple) & (!is.null(logo_color))) {
+    warning("You set logo_color without specifying 'logo_simple'")
   }
 
   # Replace text elements
@@ -80,7 +80,6 @@ get_badge <- function(
   message <- gsub("-", "--", message)
   message <- gsub("_", "__", message)
   message <- gsub(" ", "_", message)
-  logo_simple <- gsub(" ", "-", logo_simple)
 
   # Generate basic badge
   badge_url <- paste0(
@@ -109,16 +108,12 @@ get_badge <- function(
   # Add named logo from https://simpleicons.org/
   if(!is.null(logo_simple)) {
 
+    logo_simple <- gsub(" ", "-", logo_simple)  # replace spaces with hyphens
     badge_url <- paste0(badge_url, "&logo=", logo_simple)
 
     # Color for the logo
     if (!is.null(logo_color)) {
       badge_url <- paste0(badge_url, "&logoColor=", logo_color)
-    }
-
-    # Width for the logo
-    if (!is.null(logo_width)) {
-      badge_url <- paste0(badge_url, "&logoWidth=", logo_width)
     }
 
   }
@@ -135,6 +130,11 @@ get_badge <- function(
       "&logo=data:image/", logo_filetype, ";base64,", logo_path_64
     )
 
+  }
+
+  # Spacing width for the logo
+  if (!is.null(logo_width)) {
+    badge_url <- paste0(badge_url, "&logoWidth=", logo_width)
   }
 
   # Open the badge URL in your browser

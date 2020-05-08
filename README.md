@@ -57,7 +57,7 @@ The output looks like this:
 
 ``` r
 badge
-#> [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat&logo=)"
+#> [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat)"
 ```
 
 Which when rendered, looks like this:
