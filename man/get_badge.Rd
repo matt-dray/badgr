@@ -16,7 +16,6 @@ get_badge(
   logo_color = NULL,
   logo_width = NULL,
   logo_path = NULL,
-  logo_filetype = NULL,
   open_browser = TRUE,
   include_md = TRUE,
   to_clipboard = TRUE
@@ -52,9 +51,6 @@ or a custom logo with \code{logo_path}; not both.)}
 \item{logo_path}{URL string for your custom logo image. (Use either a named
 logo with \code{logo_simple} or a custom logo with \code{logo_path}; not
 both.)}
-
-\item{logo_filetype}{The filetype of the logo image specified in
-\code{logo_path}.}
 
 \item{open_browser}{Do you want to preview the badge in the browser? Requires
 an internet connection.}

@@ -23,8 +23,6 @@
 #' @param logo_path URL string for your custom logo image. (Use either a named
 #'     logo with \code{logo_simple} or a custom logo with \code{logo_path}; not
 #'     both.)
-#' @param logo_filetype The filetype of the logo image specified in
-#'     \code{logo_path}.
 #' @param open_browser Do you want to preview the badge in the browser? Requires
 #'     an internet connection.
 #' @param include_md Do you want to prepare the URL with Markdown syntax
@@ -56,7 +54,6 @@ get_badge <- function(
   logo_color = NULL,
   logo_width = NULL,
   logo_path = NULL,
-  logo_filetype = NULL,
   open_browser = TRUE,
   include_md = TRUE,
   to_clipboard = TRUE
@@ -127,7 +124,9 @@ get_badge <- function(
     # Add path to badge URL
     badge_url <- paste0(
       badge_url,
-      "&logo=data:image/", logo_filetype, ";base64,", logo_path_64
+      "&logo=data:image/",
+      tools::file_ext(gsub("/$", "", logo_path)),  # file extension
+      ";base64,", logo_path_64
     )
 
   }

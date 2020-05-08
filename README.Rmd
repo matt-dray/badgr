@@ -69,7 +69,7 @@ Which when rendered, looks like this:
 
 ### More complex
 
-Let's use a few more arguments. 
+Let's use a few more arguments. For example, we can include a pre-prepared logo from [https://simpleicons.org/](https://simpleicons.org/) and add separate links to each half of the badge.
 
 ```{r}
 badge2 <- get_badge(
@@ -94,6 +94,36 @@ badge2
 Which looks like this:
 
 ![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&labelColor=blue&link=https://rstudio.com/&link=https://shields.io&logo=rstudio&logoColor=white&logoWidth=20)
+
+### Custom logo
+
+What if you don't want to use a logo from [https://simpleicons.org/](https://simpleicons.org/)? You can use your own. Here, for example, I'm using the [favicon](https://en.wikipedia.org/wiki/Favicon) from my blog.
+
+```{r}
+# Path to favicon file
+logo <- "https://raw.githubusercontent.com/matt-dray/rostrum-blog/master/static/images/favicon.ico"
+
+badge3 <- get_badge(
+  label = "rostrum.blog",
+  message = "post",
+  color = "008900",
+  label_color = "black",
+  link_left = "https://rostrum.blog/",
+  link_right = "https://rostrum.blog/",
+  logo_path = logo,
+  open_browser = FALSE,
+  include_md = FALSE,
+  to_clipboard = FALSE
+)
+
+badge3
+```
+
+Which looks like this (note that the image is subtly animated):
+
+![](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&link=https://rostrum.blog/&link=https://rostrum.blog/&logo=data:image/ico;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)
+
+The output string for this example was much longer than for the previous examples and contains what looks like semi-random characters. This is the result of converting the image into [base64](https://en.wikipedia.org/wiki/Base64) with `base64enc::base64encode()`.
 
 ## Code of Conduct
 

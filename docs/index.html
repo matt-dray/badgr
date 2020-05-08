@@ -104,7 +104,7 @@
 <div id="more-complex" class="section level3">
 <h3 class="hasAnchor">
 <a href="#more-complex" class="anchor"></a>More complex</h3>
-<p>Let’s use a few more arguments.</p>
+<p>Let’s use a few more arguments. For example, we can include a pre-prepared logo from <a href="https://simpleicons.org/" class="uri">https://simpleicons.org/</a> and add separate links to each half of the badge.</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="no">badge2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_badge.html">get_badge</a></span>(
   <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Left bit"</span>,
   <span class="kw">message</span> <span class="kw">=</span> <span class="st">"Right bit"</span>,
@@ -125,6 +125,32 @@
 <span class="co">#&gt; [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&amp;labelColor=blue&amp;link=https://rstudio.com/&amp;link=https://shields.io&amp;logo=rstudio&amp;logoColor=white&amp;logoWidth=20)"</span></pre></div>
 <p>Which looks like this:</p>
 <p><img src="https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&amp;labelColor=blue&amp;link=https://rstudio.com/&amp;link=https://shields.io&amp;logo=rstudio&amp;logoColor=white&amp;logoWidth=20"></p>
+</div>
+<div id="custom-logo" class="section level3">
+<h3 class="hasAnchor">
+<a href="#custom-logo" class="anchor"></a>Custom logo</h3>
+<p>What if you don’t want to use a logo from <a href="https://simpleicons.org/" class="uri">https://simpleicons.org/</a>? You can use your own. Here, for example, I’m using the <a href="https://en.wikipedia.org/wiki/Favicon">favicon</a> from my blog.</p>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># Path to favicon file</span>
+<span class="no">logo</span> <span class="kw">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/matt-dray/rostrum-blog/master/static/images/favicon.ico"</span>
+
+<span class="no">badge3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_badge.html">get_badge</a></span>(
+  <span class="kw">label</span> <span class="kw">=</span> <span class="st">"rostrum.blog"</span>,
+  <span class="kw">message</span> <span class="kw">=</span> <span class="st">"post"</span>,
+  <span class="kw">color</span> <span class="kw">=</span> <span class="st">"008900"</span>,
+  <span class="kw">label_color</span> <span class="kw">=</span> <span class="st">"black"</span>,
+  <span class="kw">link_left</span> <span class="kw">=</span> <span class="st">"https://rostrum.blog/"</span>,
+  <span class="kw">link_right</span> <span class="kw">=</span> <span class="st">"https://rostrum.blog/"</span>,
+  <span class="kw">logo_path</span> <span class="kw">=</span> <span class="no">logo</span>,
+  <span class="kw">open_browser</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+  <span class="kw">include_md</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+  <span class="kw">to_clipboard</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+)
+
+<span class="no">badge3</span>
+<span class="co">#&gt; [1] "https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&amp;labelColor=black&amp;link=https://rostrum.blog/&amp;link=https://rostrum.blog/&amp;logo=data:image/ico;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7"</span></pre></div>
+<p>Which looks like this (note that the image is subtly animated):</p>
+<p><embed src="https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&amp;labelColor=black&amp;link=https://rostrum.blog/&amp;link=https://rostrum.blog/&amp;logo=data:image/ico;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7"></embed></p>
+<p>The output string for this example was much longer than for the previous examples and contains what looks like semi-random characters. This is the result of converting the image into <a href="https://en.wikipedia.org/wiki/Base64">base64</a> with <code><a href="https://rdrr.io/pkg/base64enc/man/base64.html">base64enc::base64encode()</a></code>.</p>
 </div>
 </div>
 <div id="code-of-conduct" class="section level2">
