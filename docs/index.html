@@ -67,7 +67,7 @@
 
 <p>The goal of {badgr} is to use R to generate URL endpoints for <a href="https://shields.io/">shields.io</a> metadata badges that you can use in your repository’s README file or elsewhere.</p>
 <p>I’m not affiliated with the excellent <a href="https://shields.io/">shields.io</a>.</p>
-<p>You can <a href="https://opencollective.com/shields">donate to or back shields.io</a> and can find out more from their:</p>
+<p>You can <a href="https://opencollective.com/shields">back or donate to shields.io</a>. Find out more from their:</p>
 <ul>
 <li><a href="https://shields.io/">website</a></li>
 <li><a href="https://twitter.com/Shields_io">Twitter</a></li>
@@ -81,28 +81,51 @@
 <div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"matt-dray/badgr"</span>)</pre></div>
 <p>It’s a work in progress and there are no guarantees.</p>
 </div>
-<div id="example" class="section level2">
+<div id="examples" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<a href="#examples" class="anchor"></a>Examples</h2>
+<div id="simple" class="section level3">
+<h3 class="hasAnchor">
+<a href="#simple" class="anchor"></a>Simple</h3>
 <p>This is a basic example that shows you how to generate the simplest possible badge.</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">badgr</span>)
 
-<span class="no">badge</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_badge_static.html">get_badge_static</a></span>(
+<span class="no">badge</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_badge.html">get_badge</a></span>(
   <span class="st">"Left bit"</span>, <span class="st">"Right bit"</span>, <span class="st">"blue"</span>,
   <span class="kw">to_clipboard</span> <span class="kw">=</span> <span class="fl">FALSE</span>,  <span class="co"># don't copy to clipboard</span>
   <span class="kw">open_browser</span> <span class="kw">=</span> <span class="fl">FALSE</span>  <span class="co"># don't send to browser</span>
 )</pre></div>
 <p>The output looks like this:</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="no">badge</span>
-<span class="co">#&gt; [1] "![](https://img.shields.io/badge/Left bit-Right bit-blue)"</span></pre></div>
+<span class="co">#&gt; [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat&amp;logo=)"</span></pre></div>
 <p>Which when rendered, looks like this:</p>
-<p><img src="https://img.shields.io/badge/Left%20bit-Right%20bit-blue"></p>
-<p>By default for <code><a href="reference/get_badge_static.html">get_badge_static()</a></code>:</p>
-<ul>
-<li>the endpoint will be opened in your browser (<code>open_browser = TRUE</code>)</li>
-<li>Markdown notation for displaying the badge (<code>![]()</code>) will be added (<code>add_markdown = TRUE</code>)</li>
-<li>the whole string added to your clipboard (<code>to_clipboard = TRUE</code>)</li>
-</ul>
+<p><img src="https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat"></p>
+</div>
+<div id="more-complex" class="section level3">
+<h3 class="hasAnchor">
+<a href="#more-complex" class="anchor"></a>More complex</h3>
+<p>Let’s use a few more arguments.</p>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="no">badge2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_badge.html">get_badge</a></span>(
+  <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Left bit"</span>,
+  <span class="kw">message</span> <span class="kw">=</span> <span class="st">"Right bit"</span>,
+  <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>,
+  <span class="kw">style</span> <span class="kw">=</span> <span class="st">"for-the-badge"</span>,
+  <span class="kw">label_color</span> <span class="kw">=</span> <span class="st">"blue"</span>,
+  <span class="kw">link_left</span> <span class="kw">=</span> <span class="st">"https://rstudio.com/"</span>,
+  <span class="kw">link_right</span> <span class="kw">=</span> <span class="st">"https://shields.io"</span>,
+  <span class="kw">logo_simple</span> <span class="kw">=</span> <span class="st">"rstudio"</span>,
+  <span class="kw">logo_color</span> <span class="kw">=</span> <span class="st">"white"</span>,
+  <span class="kw">logo_width</span> <span class="kw">=</span> <span class="fl">20</span>,
+  <span class="kw">open_browser</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+  <span class="kw">include_md</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+  <span class="kw">to_clipboard</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+)
+
+<span class="no">badge2</span>
+<span class="co">#&gt; [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&amp;labelColor=blue&amp;link=https://rstudio.com/&amp;link=https://shields.io&amp;logo=rstudio&amp;logoColor=white&amp;logoWidth=20)"</span></pre></div>
+<p>Which looks like this:</p>
+<p><img src="https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&amp;labelColor=blue&amp;link=https://rstudio.com/&amp;link=https://shields.io&amp;logo=rstudio&amp;logoColor=white&amp;logoWidth=20"></p>
+</div>
 </div>
 <div id="code-of-conduct" class="section level2">
 <h2 class="hasAnchor">

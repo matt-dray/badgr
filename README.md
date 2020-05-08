@@ -17,9 +17,9 @@ your repository’s README file or elsewhere.
 
 I’m not affiliated with the excellent [shields.io](https://shields.io/).
 
-You can [donate to or back
-shields.io](https://opencollective.com/shields) and can find out more
-from their:
+You can [back or donate to
+shields.io](https://opencollective.com/shields). Find out more from
+their:
 
   - [website](https://shields.io/)
   - [Twitter](https://twitter.com/Shields_io)
@@ -36,7 +36,9 @@ remotes::install_github("matt-dray/badgr")
 
 It’s a work in progress and there are no guarantees.
 
-## Example
+## Examples
+
+### Simple
 
 This is a basic example that shows you how to generate the simplest
 possible badge.
@@ -44,7 +46,7 @@ possible badge.
 ``` r
 library(badgr)
 
-badge <- get_badge_static(
+badge <- get_badge(
   "Left bit", "Right bit", "blue",
   to_clipboard = FALSE,  # don't copy to clipboard
   open_browser = FALSE  # don't send to browser
@@ -55,19 +57,42 @@ The output looks like this:
 
 ``` r
 badge
-#> [1] "![](https://img.shields.io/badge/Left bit-Right bit-blue)"
+#> [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat&logo=)"
 ```
 
 Which when rendered, looks like this:
 
-![](https://img.shields.io/badge/Left%20bit-Right%20bit-blue)
+![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat)
 
-By default for `get_badge_static()`:
+### More complex
 
-  - the endpoint will be opened in your browser (`open_browser = TRUE`)
-  - Markdown notation for displaying the badge (`![]()`) will be added
-    (`add_markdown = TRUE`)
-  - the whole string added to your clipboard (`to_clipboard = TRUE`)
+Let’s use a few more arguments.
+
+``` r
+badge2 <- get_badge(
+  label = "Left bit",
+  message = "Right bit",
+  color = "red",
+  style = "for-the-badge",
+  label_color = "blue",
+  link_left = "https://rstudio.com/",
+  link_right = "https://shields.io",
+  logo_simple = "rstudio",
+  logo_color = "white",
+  logo_width = 20,
+  open_browser = FALSE,
+  include_md = TRUE,
+  to_clipboard = FALSE
+)
+
+badge2
+#> [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&labelColor=blue&link=https://rstudio.com/&link=https://shields.io&logo=rstudio&logoColor=white&logoWidth=20)"
+```
+
+Which looks like
+this:
+
+![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&labelColor=blue&link=https://rstudio.com/&link=https://shields.io&logo=rstudio&logoColor=white&logoWidth=20)
 
 ## Code of Conduct
 
