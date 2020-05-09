@@ -2,7 +2,9 @@
 #' Generate A Static shields.io Badge
 #'
 #' Build a URL string that generates a \href{https://shields.io/}{shields.io}
-#' metadata badge, which can be used in a README or elsewhere.
+#' metadata badge. For convenience, this function allows you to embed the URL in
+#' Markdown with a link and copies this to the clipboard for use in a README or
+#' elsewhere.
 #'
 #' @param label Text string to display on the left side of the badge.
 #' @param message Text string to display on the right side of the badge.
@@ -12,22 +14,27 @@
 #'     or \code{"social"}. See examples on \href{https://shields.io/}{shields.io}.
 #' @param label_color The background color of the left side of the badge. Should
 #'     be one of hex, RGB, RGBA, HSL, HSLA or a CSS named color.
-#' @param link_left A URL string for the left side of the badge.
-#' @param link_right A URL string for the right side of the badge.
+#' @param md_link A URL string to be used in your badge's Markdown output. If
+#'     used, clicking the rendered HTML badge output will take you to this site.
+#' @param link_left A URL string for the left side of the badge. (Included for
+#'     completeness; you probably want \code{md_link} instead)
+#' @param link_right A URL string for the right side of the badge. (Included for
+#'     completeness; you probably want \code{md_link} instead)
 #' @param logo_simple Text string that names a logo from
 #'     \href{https://simpleicons.org/}{simple-icons.org} to be placed on the
 #'     far left of the badge. (Use either a named logo with \code{logo_simple}
 #'     or a custom logo with \code{logo_path}; not both.)
 #' @param logo_color A color for the logo specified by \code{logo_simple}.
-#' @param logo_width Horizontal spacing width round the logo.
+#' @param logo_width Horizontal spacing width around the logo.
 #' @param logo_path URL string for your custom logo image. (Use either a named
 #'     logo with \code{logo_simple} or a custom logo with \code{logo_path}; not
 #'     both.)
-#' @param open_browser Do you want to preview the badge in the browser? Requires
+#' @param browser_preview Do you want to preview the badge in the browser? Requires
 #'     an internet connection.
 #' @param include_md Do you want to prepare the URL with Markdown syntax
 #'     (\code{![]()}) to allow for direct copying into a Markdown file?
-#'     Otherwise you get the bare URL.
+#'     Otherwise you get the bare URL. Use \code{md_link} to add a link to the
+#'     badge.
 #' @param to_clipboard Do you want the string to be copied to your clipboard so
 #'     you can paste it elsewhere? Will overwrite your current clipboard items.
 #'
@@ -37,9 +44,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' get_badge("Label", "Message", "blue")
-#' }
+#' get_badge("Label", "Message", "blue", browser_preview = FALSE, to_clipboard = FALSE)
 
 get_badge <- function(
 
@@ -48,26 +53,43 @@ get_badge <- function(
   color = "ff0000",
   style = "flat",
   label_color  = NULL,
+  md_link = NULL,
   link_left = NULL,
   link_right = NULL,
   logo_simple = NULL,
   logo_color = NULL,
   logo_width = NULL,
   logo_path = NULL,
-  open_browser = TRUE,
+  browser_preview = TRUE,
   include_md = TRUE,
   to_clipboard = TRUE
 
 ) {
 
+  # Stop if out-of-scope style
   if (!style %in% c("plastic", "flat", "for-the-badge", "social")) {
     stop(
-      "The 'style' argument must be one of 'plastic', 'flat', 'for-the-badge', or 'social'"
+      paste(
+        "The 'style' argument must be one of 'plastic', 'flat',",
+        "'for-the-badge', or 'social'"
+      )
     )
   }
 
-  if (is.null(logo_simple) & (!is.null(logo_color))) {
-    warning("You set logo_color without specifying 'logo_simple'")
+  # Warning if the logo colour is set without specifying a logo
+  if (is.null(logo_simple) & !is.null(logo_color)) {
+    warning("You set 'logo_color' without providing 'logo_simple'")
+  }
+
+  # Warning if a link is provided for the Markdown output without specifying
+  # that you actually want Markdown output
+  if (include_md == FALSE & !is.null(md_link)) {
+    warning(
+      paste(
+        "You provided a link for the Markdown output. Did you mean to say",
+        "include_md = TRUE as well?"
+      )
+    )
   }
 
   # Replace text elements
@@ -137,20 +159,32 @@ get_badge <- function(
   }
 
   # Open the badge URL in your browser
-  if (open_browser == TRUE) {
+  if (browser_preview == TRUE) {
     utils::browseURL(badge_url)
-    cat("Opening browser to display badge\n")
+    cat("Opening browser to display badge preview\n")
   }
 
   # Make ready for use in Markdown
   if (include_md == TRUE) {
-    badge_url <- paste0("![](", badge_url, ")")
+
+    if (!is.null(md_link)) {  # if a link was provided in md_link
+      badge_url <- paste0("[![](", badge_url, ")](", md_link, ")")
+    } else {                  # if a link wasn't provided in md_link
+      badge_url <- paste0("![](", badge_url, ")]")
+    }
+
   }
 
   # Write the badge URL to the clipboard
   if (to_clipboard == TRUE){
     clipr::write_clip(badge_url, return_new = TRUE)
-    cat("Badge URL added to clipboard\n")
+
+    if (include_md == TRUE) {
+      cat("Badge Markdown added to clipboard\n")
+    } else {
+      cat("Badge URL added to clipboard\n")
+    }
+
   }
 
   return(badge_url)
