@@ -17,6 +17,7 @@ get_badge(
   logo_color = NULL,
   logo_width = NULL,
   logo_path = NULL,
+  ext_override = NULL,
   browser_preview = TRUE,
   include_md = TRUE,
   to_clipboard = TRUE
@@ -57,6 +58,11 @@ or a custom logo with \code{logo_path}; not both.)}
 \item{logo_path}{URL string for your custom logo image. (Use either a named
 logo with \code{logo_simple} or a custom logo with \code{logo_path}; not
 both.)}
+
+\item{ext_override}{Provide a file extension that overrides the one in
+\code{logo_path}. (For example, you could specify \code{png} or
+\code{gif} if you're using a favicon in \code{ico} format.) You're
+unlikely to need this argument.}
 
 \item{browser_preview}{Do you want to preview the badge in the browser? Requires
 an internet connection.}

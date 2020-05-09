@@ -29,6 +29,10 @@
 #' @param logo_path URL string for your custom logo image. (Use either a named
 #'     logo with \code{logo_simple} or a custom logo with \code{logo_path}; not
 #'     both.)
+#' @param ext_override Provide a file extension that overrides the one in
+#'     \code{logo_path}. (For example, you could specify \code{png} or
+#'     \code{gif} if you're using a favicon in \code{ico} format.) You're
+#'     unlikely to need this argument.
 #' @param browser_preview Do you want to preview the badge in the browser? Requires
 #'     an internet connection.
 #' @param include_md Do you want to prepare the URL with Markdown syntax
@@ -60,6 +64,7 @@ get_badge <- function(
   logo_color = NULL,
   logo_width = NULL,
   logo_path = NULL,
+  ext_override = NULL,
   browser_preview = TRUE,
   include_md = TRUE,
   to_clipboard = TRUE
@@ -144,12 +149,21 @@ get_badge <- function(
     logo_path_64 <- base64enc::base64encode(logo_path)
 
     # Add path to badge URL
-    badge_url <- paste0(
-      badge_url,
-      "&logo=data:image/",
-      tools::file_ext(gsub("/$", "", logo_path)),  # file extension
-      ";base64,", logo_path_64
-    )
+    if (is.null(ext_override)) {
+      badge_url <- paste0(
+        badge_url,
+        "&logo=data:image/",
+        tools::file_ext(gsub("/$", "", logo_path)),  # file extension
+        ";base64,", logo_path_64
+      )
+    } else if (!is.null(ext_override)) {
+      badge_url <- paste0(
+        badge_url,
+        "&logo=data:image/",
+        ext_override,  # file extension override
+        ";base64,", logo_path_64
+      )
+    }
 
   }
 
