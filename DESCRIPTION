@@ -1,8 +1,8 @@
 Package: badgr
 Version: 0.0.0.9000
 Title: Create A shields.io Badge URL
-Description: Build A URL Endpoint For A shields.io Badge To Use In Your
-    Project's README File Or Elsewhere.
+Description: Build A URL For A Custom shields.io Badge To Use In You Project's
+    README File Or Elsewhere.
 Authors@R: person(
     "Matt", "Dray", 
     email = "mwdray@gmail.com",

@@ -12,8 +12,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Create A shields.io Badge URL">
-<meta property="og:description" content="Build A URL Endpoint For A shields.io Badge To Use In Your
-    Project's README File Or Elsewhere.">
+<meta property="og:description" content="Build A URL For A Custom shields.io Badge To Use In You Project's
+    README File Or Elsewhere.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -65,15 +65,9 @@
 <a href="#badgr" class="anchor"></a>{badgr}</h1></div>
 <!-- badges: start -->
 
-<p>The goal of {badgr} is to use R to generate URL endpoints for <a href="https://shields.io/">shields.io</a> metadata badges that you can use in your repository’s README file or elsewhere.</p>
+<p>The goal of {badgr} is to use R to generate URLs for <a href="https://shields.io/">shields.io</a> metadata badges that you can use in your repository’s README file or elsewhere.</p>
 <p>I’m not affiliated with the excellent <a href="https://shields.io/">shields.io</a>.</p>
-<p>You can <a href="https://opencollective.com/shields">back or donate to shields.io</a>. Find out more from their:</p>
-<ul>
-<li><a href="https://shields.io/">website</a></li>
-<li><a href="https://twitter.com/Shields_io">Twitter</a></li>
-<li><a href="https://discord.com/invite/HjJCwm5">Discord</a></li>
-<li><a href="https://github.com/badges/shields">source code</a></li>
-</ul>
+<p>You can <a href="https://opencollective.com/shields">back or donate to shields.io</a>. Find out more from their <a href="https://shields.io/">website</a>, <a href="https://twitter.com/Shields_io">Twitter</a>, <a href="https://discord.com/invite/HjJCwm5">Discord</a> or go to <a href="https://github.com/badges/shields">the source code</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -84,6 +78,11 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
+<ol>
+<li>Simple: bare bones functionality</li>
+<li>More complex: introducing a logo and changing the style</li>
+<li>Custom logo: adding your own logo</li>
+</ol>
 <div id="simple" class="section level3">
 <h3 class="hasAnchor">
 <a href="#simple" class="anchor"></a>Simple</h3>
@@ -92,65 +91,63 @@
 
 <span class="no">badge</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_badge.html">get_badge</a></span>(
   <span class="st">"Left bit"</span>, <span class="st">"Right bit"</span>, <span class="st">"blue"</span>,
-  <span class="kw">to_clipboard</span> <span class="kw">=</span> <span class="fl">FALSE</span>,  <span class="co"># don't copy to clipboard</span>
-  <span class="kw">open_browser</span> <span class="kw">=</span> <span class="fl">FALSE</span>  <span class="co"># don't send to browser</span>
+  <span class="kw">to_clipboard</span> <span class="kw">=</span> <span class="fl">FALSE</span>,     <span class="co"># don't copy to clipboard</span>
+  <span class="kw">browser_preview</span> <span class="kw">=</span> <span class="fl">FALSE</span>   <span class="co"># don't send to browser</span>
 )</pre></div>
 <p>The output looks like this:</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="no">badge</span>
-<span class="co">#&gt; [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat)"</span></pre></div>
+<span class="co">#&gt; [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat)]"</span></pre></div>
 <p>Which when rendered, looks like this:</p>
 <p><img src="https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat"></p>
 </div>
 <div id="more-complex" class="section level3">
 <h3 class="hasAnchor">
 <a href="#more-complex" class="anchor"></a>More complex</h3>
-<p>Let’s use a few more arguments. For example, we can include a pre-prepared logo from <a href="https://simpleicons.org/" class="uri">https://simpleicons.org/</a> and add separate links to each half of the badge.</p>
+<p>Let’s use a few more arguments. For example, we can include a pre-prepared logo from <a href="https://simpleicons.org/" class="uri">https://simpleicons.org/</a> and provide a link that will be added to the Markdown, so clicking the badge will take you to that site.</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="no">badge2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_badge.html">get_badge</a></span>(
   <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Left bit"</span>,
   <span class="kw">message</span> <span class="kw">=</span> <span class="st">"Right bit"</span>,
   <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>,
-  <span class="kw">style</span> <span class="kw">=</span> <span class="st">"for-the-badge"</span>,
-  <span class="kw">label_color</span> <span class="kw">=</span> <span class="st">"blue"</span>,
-  <span class="kw">link_left</span> <span class="kw">=</span> <span class="st">"https://rstudio.com/"</span>,
-  <span class="kw">link_right</span> <span class="kw">=</span> <span class="st">"https://shields.io"</span>,
-  <span class="kw">logo_simple</span> <span class="kw">=</span> <span class="st">"rstudio"</span>,
-  <span class="kw">logo_color</span> <span class="kw">=</span> <span class="st">"white"</span>,
-  <span class="kw">logo_width</span> <span class="kw">=</span> <span class="fl">20</span>,
-  <span class="kw">open_browser</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">include_md</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+  <span class="kw">style</span> <span class="kw">=</span> <span class="st">"for-the-badge"</span>,         <span class="co"># default was 'flat'</span>
+  <span class="kw">label_color</span> <span class="kw">=</span> <span class="st">"blue"</span>,            <span class="co"># colour for the left side</span>
+  <span class="kw">md_link</span> <span class="kw">=</span> <span class="st">"https://shields.io"</span>,  <span class="co"># include a link in the Markdown</span>
+  <span class="kw">logo_simple</span> <span class="kw">=</span> <span class="st">"RStudio"</span>,         <span class="co"># a simpleicons.org logo</span>
+  <span class="kw">logo_color</span> <span class="kw">=</span> <span class="st">"white"</span>,            <span class="co"># a color for that logo</span>
+  <span class="kw">logo_width</span> <span class="kw">=</span> <span class="fl">20</span>,                 <span class="co"># pad width around logo </span>
+  <span class="kw">browser_preview</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
   <span class="kw">to_clipboard</span> <span class="kw">=</span> <span class="fl">FALSE</span>
 )
 
 <span class="no">badge2</span>
-<span class="co">#&gt; [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&amp;labelColor=blue&amp;link=https://rstudio.com/&amp;link=https://shields.io&amp;logo=rstudio&amp;logoColor=white&amp;logoWidth=20)"</span></pre></div>
+<span class="co">#&gt; [1] "[![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&amp;labelColor=blue&amp;logo=RStudio&amp;logoColor=white&amp;logoWidth=20)](https://shields.io)"</span></pre></div>
 <p>Which looks like this:</p>
-<p><img src="https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&amp;labelColor=blue&amp;link=https://rstudio.com/&amp;link=https://shields.io&amp;logo=rstudio&amp;logoColor=white&amp;logoWidth=20"></p>
+<p><a href="https://shields.io"><img src="https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&amp;labelColor=blue&amp;logo=rstudio&amp;logoColor=white&amp;logoWidth=20"></a></p>
+<p>Clicking it will take you to the link specified by the <code>md_link</code> argument.</p>
 </div>
 <div id="custom-logo" class="section level3">
 <h3 class="hasAnchor">
 <a href="#custom-logo" class="anchor"></a>Custom logo</h3>
 <p>What if you don’t want to use a logo from <a href="https://simpleicons.org/" class="uri">https://simpleicons.org/</a>? You can use your own. Here, for example, I’m using the <a href="https://en.wikipedia.org/wiki/Favicon">favicon</a> from my blog.</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># Path to favicon file</span>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># Path to custom logo</span>
 <span class="no">logo</span> <span class="kw">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/matt-dray/rostrum-blog/master/static/images/favicon.ico"</span>
 
 <span class="no">badge3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_badge.html">get_badge</a></span>(
   <span class="kw">label</span> <span class="kw">=</span> <span class="st">"rostrum.blog"</span>,
   <span class="kw">message</span> <span class="kw">=</span> <span class="st">"post"</span>,
-  <span class="kw">color</span> <span class="kw">=</span> <span class="st">"008900"</span>,
+  <span class="kw">color</span> <span class="kw">=</span> <span class="st">"008900"</span>,  <span class="co"># color can be supplied as hex</span>
   <span class="kw">label_color</span> <span class="kw">=</span> <span class="st">"black"</span>,
-  <span class="kw">link_left</span> <span class="kw">=</span> <span class="st">"https://rostrum.blog/"</span>,
-  <span class="kw">link_right</span> <span class="kw">=</span> <span class="st">"https://rostrum.blog/"</span>,
+  <span class="kw">md_link</span> <span class="kw">=</span> <span class="st">"https://www.rostrum.blog/"</span>,
   <span class="kw">logo_path</span> <span class="kw">=</span> <span class="no">logo</span>,
-  <span class="kw">open_browser</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">include_md</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+  <span class="kw">browser_preview</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
   <span class="kw">to_clipboard</span> <span class="kw">=</span> <span class="fl">FALSE</span>
 )
 
 <span class="no">badge3</span>
-<span class="co">#&gt; [1] "https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&amp;labelColor=black&amp;link=https://rostrum.blog/&amp;link=https://rostrum.blog/&amp;logo=data:image/ico;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7"</span></pre></div>
-<p>Which looks like this (note that the image is subtly animated):</p>
-<p><embed src="https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&amp;labelColor=black&amp;link=https://rostrum.blog/&amp;link=https://rostrum.blog/&amp;logo=data:image/ico;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7"></embed></p>
-<p>The output string for this example was much longer than for the previous examples and contains what looks like semi-random characters. This is the result of converting the image into <a href="https://en.wikipedia.org/wiki/Base64">base64</a> with <code><a href="https://rdrr.io/pkg/base64enc/man/base64.html">base64enc::base64encode()</a></code>.</p>
+<span class="co">#&gt; [1] "[![](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&amp;labelColor=black&amp;logo=data:image/ico;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/)"</span></pre></div>
+<p>Which looks like this (note that the image is subtly animated!):</p>
+<p><a href="https://www.rostrum.blog/"><embed src="https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&amp;labelColor=black&amp;logo=data:image/ico;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7"></embed></a></p>
+<p>Again, you can click this badge to be taken to the link specified in <code>md_link</code>, i.e. <a href="https://www.rostrum.blog/" class="uri">https://www.rostrum.blog/</a>.</p>
+<p>Note that the output Markdown string for this example was much longer than for the previous examples and contains what looks like semi-random characters. This is the result of converting the image into <a href="https://en.wikipedia.org/wiki/Base64">base64</a> with <code><a href="https://rdrr.io/pkg/base64enc/man/base64.html">base64enc::base64encode()</a></code>. This is a requirement for embedding a custom icon into a shields.io badge.</p>
 </div>
 </div>
 <div id="code-of-conduct" class="section level2">

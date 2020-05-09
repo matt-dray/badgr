@@ -41,7 +41,9 @@
 
 <meta property="og:title" content="Generate A Static shields.io Badge — get_badge" />
 <meta property="og:description" content="Build a URL string that generates a shields.io
-metadata badge, which can be used in a README or elsewhere." />
+metadata badge. For convenience, this function allows you to embed the URL in
+Markdown with a link and copies this to the clipboard for use in a README or
+elsewhere." />
 
 
 
@@ -111,7 +113,9 @@ metadata badge, which can be used in a README or elsewhere." />
 
     <div class="ref-description">
     <p>Build a URL string that generates a <a href='https://shields.io/'>shields.io</a>
-metadata badge, which can be used in a README or elsewhere.</p>
+metadata badge. For convenience, this function allows you to embed the URL in
+Markdown with a link and copies this to the clipboard for use in a README or
+elsewhere.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_badge</span>(
@@ -120,13 +124,14 @@ metadata badge, which can be used in a README or elsewhere.</p>
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"ff0000"</span>,
   <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"flat"</span>,
   <span class='kw'>label_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>md_link</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>link_left</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>link_right</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>logo_simple</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>logo_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>logo_width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>logo_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>open_browser</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>browser_preview</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>include_md</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>to_clipboard</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
@@ -158,12 +163,19 @@ or <code>"social"</code>. See examples on <a href='https://shields.io/'>shields.
 be one of hex, RGB, RGBA, HSL, HSLA or a CSS named color.</p></td>
     </tr>
     <tr>
+      <th>md_link</th>
+      <td><p>A URL string to be used in your badge's Markdown output. If
+used, clicking the rendered HTML badge output will take you to this site.</p></td>
+    </tr>
+    <tr>
       <th>link_left</th>
-      <td><p>A URL string for the left side of the badge.</p></td>
+      <td><p>A URL string for the left side of the badge. (Included for
+completeness; you probably want <code>md_link</code> instead)</p></td>
     </tr>
     <tr>
       <th>link_right</th>
-      <td><p>A URL string for the right side of the badge.</p></td>
+      <td><p>A URL string for the right side of the badge. (Included for
+completeness; you probably want <code>md_link</code> instead)</p></td>
     </tr>
     <tr>
       <th>logo_simple</th>
@@ -178,7 +190,7 @@ or a custom logo with <code>logo_path</code>; not both.)</p></td>
     </tr>
     <tr>
       <th>logo_width</th>
-      <td><p>Horizontal spacing width round the logo.</p></td>
+      <td><p>Horizontal spacing width around the logo.</p></td>
     </tr>
     <tr>
       <th>logo_path</th>
@@ -187,7 +199,7 @@ logo with <code>logo_simple</code> or a custom logo with <code>logo_path</code>;
 both.)</p></td>
     </tr>
     <tr>
-      <th>open_browser</th>
+      <th>browser_preview</th>
       <td><p>Do you want to preview the badge in the browser? Requires
 an internet connection.</p></td>
     </tr>
@@ -195,7 +207,8 @@ an internet connection.</p></td>
       <th>include_md</th>
       <td><p>Do you want to prepare the URL with Markdown syntax
 (<code>![]()</code>) to allow for direct copying into a Markdown file?
-Otherwise you get the bare URL.</p></td>
+Otherwise you get the bare URL. Use <code>md_link</code> to add a link to the
+badge.</p></td>
     </tr>
     <tr>
       <th>to_clipboard</th>
@@ -209,9 +222,7 @@ you can paste it elsewhere? Will overwrite your current clipboard items.</p></td
     <p>A text string.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>get_badge</span>(<span class='st'>"Label"</span>, <span class='st'>"Message"</span>, <span class='st'>"blue"</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_badge</span>(<span class='st'>"Label"</span>, <span class='st'>"Message"</span>, <span class='st'>"blue"</span>, <span class='kw'>browser_preview</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>to_clipboard</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "![](https://img.shields.io/badge/Label-Message-blue?style=flat)]"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

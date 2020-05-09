@@ -10,13 +10,14 @@ get_badge(
   color = "ff0000",
   style = "flat",
   label_color = NULL,
+  md_link = NULL,
   link_left = NULL,
   link_right = NULL,
   logo_simple = NULL,
   logo_color = NULL,
   logo_width = NULL,
   logo_path = NULL,
-  open_browser = TRUE,
+  browser_preview = TRUE,
   include_md = TRUE,
   to_clipboard = TRUE
 )
@@ -35,9 +36,14 @@ or \code{"social"}. See examples on \href{https://shields.io/}{shields.io}.}
 \item{label_color}{The background color of the left side of the badge. Should
 be one of hex, RGB, RGBA, HSL, HSLA or a CSS named color.}
 
-\item{link_left}{A URL string for the left side of the badge.}
+\item{md_link}{A URL string to be used in your badge's Markdown output. If
+used, clicking the rendered HTML badge output will take you to this site.}
 
-\item{link_right}{A URL string for the right side of the badge.}
+\item{link_left}{A URL string for the left side of the badge. (Included for
+completeness; you probably want \code{md_link} instead)}
+
+\item{link_right}{A URL string for the right side of the badge. (Included for
+completeness; you probably want \code{md_link} instead)}
 
 \item{logo_simple}{Text string that names a logo from
 \href{https://simpleicons.org/}{simple-icons.org} to be placed on the
@@ -46,18 +52,19 @@ or a custom logo with \code{logo_path}; not both.)}
 
 \item{logo_color}{A color for the logo specified by \code{logo_simple}.}
 
-\item{logo_width}{Horizontal spacing width round the logo.}
+\item{logo_width}{Horizontal spacing width around the logo.}
 
 \item{logo_path}{URL string for your custom logo image. (Use either a named
 logo with \code{logo_simple} or a custom logo with \code{logo_path}; not
 both.)}
 
-\item{open_browser}{Do you want to preview the badge in the browser? Requires
+\item{browser_preview}{Do you want to preview the badge in the browser? Requires
 an internet connection.}
 
 \item{include_md}{Do you want to prepare the URL with Markdown syntax
 (\code{![]()}) to allow for direct copying into a Markdown file?
-Otherwise you get the bare URL.}
+Otherwise you get the bare URL. Use \code{md_link} to add a link to the
+badge.}
 
 \item{to_clipboard}{Do you want the string to be copied to your clipboard so
 you can paste it elsewhere? Will overwrite your current clipboard items.}
@@ -67,10 +74,10 @@ A text string.
 }
 \description{
 Build a URL string that generates a \href{https://shields.io/}{shields.io}
-metadata badge, which can be used in a README or elsewhere.
+metadata badge. For convenience, this function allows you to embed the URL in
+Markdown with a link and copies this to the clipboard for use in a README or
+elsewhere.
 }
 \examples{
-\dontrun{
-get_badge("Label", "Message", "blue")
-}
+get_badge("Label", "Message", "blue", browser_preview = FALSE, to_clipboard = FALSE)
 }
