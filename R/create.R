@@ -29,8 +29,10 @@
 #' @param logo_path URL string for your custom logo image. (Use either a named
 #'     logo with \code{logo_simple} or a custom logo with \code{logo_path}; not
 #'     both.)
-#' @param ext_override Provide a file extension type for your logo_path that
-#'     overrides the one in \code{logo_path}.
+#' @param ext_override Provide a file extension that overrides the one in
+#'     \code{logo_path}. (For example, you could specify \code{png} or
+#'     \code{gif} if you're using a favicon in \code{ico} format.) You're
+#'     unlikely to need this argument.
 #' @param browser_preview Do you want to preview the badge in the browser? Requires
 #'     an internet connection.
 #' @param include_md Do you want to prepare the URL with Markdown syntax

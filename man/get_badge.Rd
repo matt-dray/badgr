@@ -59,8 +59,10 @@ or a custom logo with \code{logo_path}; not both.)}
 logo with \code{logo_simple} or a custom logo with \code{logo_path}; not
 both.)}
 
-\item{ext_override}{Provide a file extension type for your logo_path that
-overrides the one in \code{logo_path}.}
+\item{ext_override}{Provide a file extension that overrides the one in
+\code{logo_path}. (For example, you could specify \code{png} or
+\code{gif} if you're using a favicon in \code{ico} format.) You're
+unlikely to need this argument.}
 
 \item{browser_preview}{Do you want to preview the badge in the browser? Requires
 an internet connection.}

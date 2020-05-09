@@ -103,12 +103,13 @@ argument.
 ### Custom logo
 
 What if you don’t want to use a logo from <https://simpleicons.org/>?
-You can use your own. Here, for example, I’m using the
-[favicon](https://en.wikipedia.org/wiki/Favicon) from my blog.
+You can use your own. Here, for example, I’m using [a small
+gif](https://raw.githubusercontent.com/matt-dray/rostrum-blog/master/static/images/favicon.gif)
+of the logo from [my blog](https://www.rostrum.blog/).
 
 ``` r
 # Path to custom logo
-logo <- "https://raw.githubusercontent.com/matt-dray/rostrum-blog/master/static/images/favicon.ico"
+logo <- "https://raw.githubusercontent.com/matt-dray/rostrum-blog/master/static/images/favicon.gif"
 
 badge3 <- get_badge(
   label = "rostrum.blog",
@@ -117,7 +118,6 @@ badge3 <- get_badge(
   label_color = "black",
   md_link = "https://www.rostrum.blog/",
   logo_path = logo,
-  ext_override = "gif",  # rather than ico
   browser_preview = FALSE,
   to_clipboard = FALSE
 )
