@@ -13,7 +13,7 @@ proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https:
 post](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&logo=data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/2020/05/08/readme-badge/)
 <!-- badges: end -->
 
-The goal of {badgr} is to use R to generate URLs for custom [shields.io](https://shields.io/) metadata badges that you can use in your repository’s README file or elsewhere.
+The goal of {badgr} is to use R to generate markdown for custom [shields.io](https://shields.io/) metadata badges that you can use in your GitHub repository’s README file or elsewhere.
 
 I’m not affiliated with the excellent [shields.io](https://shields.io/). You can [back or donate to them](https://opencollective.com/shields). Find out more from
 their [website](https://shields.io/), [Twitter](https://twitter.com/Shields_io), [Discord](https://discord.com/invite/HjJCwm5) or go to [the source code](https://github.com/badges/shields).
