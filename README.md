@@ -13,18 +13,12 @@ proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https:
 post](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&logo=data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/2020/05/08/readme-badge/)
 <!-- badges: end -->
 
-The goal of {badgr} is to use R to generate URLs for
-[shields.io](https://shields.io/) metadata badges that you can use in
-your repository’s README file or elsewhere.
+The goal of {badgr} is to use R to generate URLs for custom [shields.io](https://shields.io/) metadata badges that you can use in your repository’s README file or elsewhere.
 
-I’m not affiliated with the excellent [shields.io](https://shields.io/).
+I’m not affiliated with the excellent [shields.io](https://shields.io/). You can [back or donate to them](https://opencollective.com/shields). Find out more from
+their [website](https://shields.io/), [Twitter](https://twitter.com/Shields_io), [Discord](https://discord.com/invite/HjJCwm5) or go to [the source code](https://github.com/badges/shields).
 
-You can [back or donate to
-shields.io](https://opencollective.com/shields). Find out more from
-their [website](https://shields.io/),
-[Twitter](https://twitter.com/Shields_io),
-[Discord](https://discord.com/invite/HjJCwm5) or go to [the source
-code](https://github.com/badges/shields).
+_Update (2020-12-28): Somehow I missed the existence of [the {badger} package](https://github.com/GuangchuangYu/badger) by [Guangchuang Yu](https://guangchuangyu.github.io/), which is on CRAN. It contains functions for several pre-baked badge types, plus `badge_custom()`. I think the major difference is that {badgr} has a little more flexibility than {badger} for custom badge arguments and {badgr} also allows for custom icons to be added._
 
 ## Installation
 
@@ -38,11 +32,13 @@ It’s a work in progress and there are no guarantees.
 
 ## Examples
 
-1.  Simple: bare bones functionality
-2.  More complex: introducing a logo and changing the style
-3.  Custom logo: adding your own logo
+The following examples contain examples that are:
 
-### Simple
+1.  Simple (bare bones functionality)
+2.  More complex (add a logo and change the style)
+3.  With a custom logo
+
+### 1. Simple
 
 This is a basic example that shows you how to generate the simplest
 possible badge.
@@ -68,7 +64,7 @@ Which when rendered, looks like this:
 
 ![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat)
 
-### More complex
+### 2. More complex
 
 Let’s use a few more arguments. For example, we can include a
 pre-prepared logo from <https://simpleicons.org/> and provide a link
@@ -102,7 +98,7 @@ this:
 Clicking it will take you to the link specified by the `md_link`
 argument.
 
-### Custom logo
+### 3. Custom logo
 
 What if you don’t want to use a logo from <https://simpleicons.org/>?
 You can use your own. Here, for example, I’m using [a small
@@ -137,8 +133,7 @@ Again, you can click this badge to be taken to the link specified in
 `md_link`, i.e. <https://www.rostrum.blog/>.
 
 Note that the output Markdown string for this example was much longer
-than for the previous examples and contains what looks like semi-random
-characters. This is the result of converting the image into
+than for the previous examples. This is the result of converting the image into
 [base64](https://en.wikipedia.org/wiki/Base64) with
 `base64enc::base64encode()`. This is a requirement for embedding a
 custom icon into a shields.io badge.
