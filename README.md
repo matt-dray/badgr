@@ -5,20 +5,29 @@
 
 <!-- badges: start -->
 
-[![Project Status: Concept – Minimal or no implementation has been done
-yet, or the repository is only intended to be a limited example, demo,
-or
-proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+[![Project Status: Inactive – The project has reached a stable, usable
+state but is no longer being actively developed; support/maintenance
+will be provided as time
+allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
+[![R build
+status](https://github.com/matt-dray/badgr/workflows/R-CMD-check/badge.svg)](https://github.com/matt-dray/badgr/actions)
+[![CodeFactor](https://www.codefactor.io/repository/github/matt-dray/badgr/badge)](https://www.codefactor.io/repository/github/matt-dray/badgr)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/badgr)](https://CRAN.R-project.org/package=badgr)
 [![rostrum.blog
 post](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&logo=data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/2020/05/08/readme-badge/)
 <!-- badges: end -->
 
-The goal of {badgr} is to use R to generate markdown for custom [shields.io](https://shields.io/) metadata badges that you can use in your GitHub repository’s README file or elsewhere.
+The goal of {badgr} is to use R to generate URLs for
+[shields.io](https://shields.io/) metadata badges that you can use in
+your repository’s README file or elsewhere.
 
-I’m not affiliated with the excellent [shields.io](https://shields.io/). You can [back or donate to them](https://opencollective.com/shields). Find out more from
-their [website](https://shields.io/), [Twitter](https://twitter.com/Shields_io), [Discord](https://discord.com/invite/HjJCwm5) or go to [the source code](https://github.com/badges/shields).
-
-_Update (2020-12-28): Somehow I missed the existence of [the {badger} package](https://github.com/GuangchuangYu/badger) by [Guangchuang Yu](https://guangchuangyu.github.io/), which is on CRAN. It contains functions for several pre-baked badge types, plus `badge_custom()`. I think the major difference is that {badgr} has a little more flexibility than {badger} for custom badge arguments and {badgr} also allows for custom icons to be added._
+I’m not affiliated with the excellent [shields.io](https://shields.io/).
+You can [back or donate to them](https://opencollective.com/shields).
+Find out more from their [website](https://shields.io/),
+[Twitter](https://twitter.com/Shields_io),
+[Discord](https://discord.com/invite/HjJCwm5) or go to [the source
+code](https://github.com/badges/shields).
 
 ## Installation
 
@@ -28,15 +37,15 @@ You can install {badgr} from GitHub with:
 remotes::install_github("matt-dray/badgr")
 ```
 
-It’s a work in progress and there are no guarantees.
+The package seems to do what it’s supposed to, but there are no
+guarantees. [File an issue](https://github.com/matt-dray/badgr/issues)
+if you find any problems.
 
 ## Examples
 
-The following examples contain examples that are:
-
-1.  Simple (bare bones functionality)
-2.  More complex (add a logo and change the style)
-3.  With a custom logo
+1.  Simple: bare bones functionality
+2.  More complex: introducing a logo and changing the style
+3.  Custom logo: adding your own logo
 
 ### 1. Simple
 
@@ -90,8 +99,7 @@ badge2
 #> [1] "[![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&labelColor=blue&logo=RStudio&logoColor=white&logoWidth=20)](https://shields.io)"
 ```
 
-Which looks like
-this:
+Which looks like this:
 
 [![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&labelColor=blue&logo=rstudio&logoColor=white&logoWidth=20)](https://shields.io)
 
@@ -124,8 +132,7 @@ badge3
 #> [1] "[![](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&logo=data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/)"
 ```
 
-Which looks like this (note that the image is subtly
-animated\!):
+Which looks like this (note that the image is subtly animated!):
 
 [![](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&logo=data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/)
 
@@ -133,10 +140,22 @@ Again, you can click this badge to be taken to the link specified in
 `md_link`, i.e. <https://www.rostrum.blog/>.
 
 Note that the output Markdown string for this example was much longer
-than for the previous examples. This is the result of converting the image into
+than for the previous examples and contains what looks like semi-random
+characters. This is the result of converting the image into
 [base64](https://en.wikipedia.org/wiki/Base64) with
 `base64enc::base64encode()`. This is a requirement for embedding a
 custom icon into a shields.io badge.
+
+# Similar projects
+
+Somehow I missed the existence of [the {badger}
+package](https://github.com/GuangchuangYu/badger) by [Guangchuang
+Yu](https://guangchuangyu.github.io/), which is on CRAN. It contains
+functions for several pre-baked badge types, plus `badge_custom()`.
+
+I think the major difference is that {badgr} has a little more
+flexibility than {badger} for custom badge arguments and {badgr} also
+allows for custom icons to be added.
 
 ## Code of Conduct
 
