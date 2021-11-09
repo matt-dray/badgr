@@ -184,7 +184,7 @@ get_badge <- function(
     if (!is.null(md_link)) {  # if a link was provided in md_link
       badge_url <- paste0("[![](", badge_url, ")](", md_link, ")")
     } else {                  # if a link wasn't provided in md_link
-      badge_url <- paste0("![](", badge_url, ")]")
+      # badge_url <- paste0("![](", badge_url, ")")
     }
 
   }

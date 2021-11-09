@@ -6,8 +6,7 @@
 \alias{badgr-package}
 \title{badgr: Create A shields.io Badge URL}
 \description{
-Build A URL For A Custom shields.io Badge To Use In You Project's
-    README File Or Elsewhere.
+Build A URL For A Custom shields.io Badge To Use In You Project's README File Or Elsewhere.
 }
 \author{
 \strong{Maintainer}: Matt Dray \email{mwdray@gmail.com}
