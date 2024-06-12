@@ -1,4 +1,3 @@
-
 #' Generate A Static shields.io Badge
 #'
 #' Build a URL string that generates a \href{https://shields.io/}{shields.io}
@@ -11,7 +10,8 @@
 #' @param color The background color of the right side of the badge. Should be
 #'     one of hex, RGB, RGBA, HSL, HSLA or a CSS named color.
 #' @param style One of \code{"plastic"}, \code{"flat"}, \code{"for-the-badge"}
-#'     or \code{"social"}. See examples on \href{https://shields.io/}{shields.io}.
+#'     or \code{"social"}. See examples on
+#'     \href{https://shields.io/}{shields.io}.
 #' @param label_color The background color of the left side of the badge. Should
 #'     be one of hex, RGB, RGBA, HSL, HSLA or a CSS named color.
 #' @param md_link A URL string to be used in your badge's Markdown output. If
@@ -33,8 +33,8 @@
 #'     \code{logo_path}. (For example, you could specify \code{png} or
 #'     \code{gif} if you're using a favicon in \code{ico} format.) You're
 #'     unlikely to need this argument.
-#' @param browser_preview Do you want to preview the badge in the browser? Requires
-#'     an internet connection.
+#' @param browser_preview Do you want to preview the badge in the browser?
+#'     Requires an internet connection.
 #' @param include_md Do you want to prepare the URL with Markdown syntax
 #'     (\code{![]()}) to allow for direct copying into a Markdown file?
 #'     Otherwise you get the bare URL. Use \code{md_link} to add a link to the
@@ -42,52 +42,54 @@
 #' @param to_clipboard Do you want the string to be copied to your clipboard so
 #'     you can paste it elsewhere? Will overwrite your current clipboard items.
 #'
-#' @return A text string.
+#' @return A Markdown text string.
+#'
 #' @importFrom clipr write_clip
 #' @importFrom base64enc base64encode
-#' @export
 #'
 #' @examples
-#' get_badge("Label", "Message", "blue", browser_preview = FALSE, to_clipboard = FALSE)
-
+#' get_badge(
+#'   label = "Label",
+#'   message = "Message",
+#'   color = "blue",
+#'   browser_preview = FALSE,
+#'   to_clipboard = FALSE
+#' )
+#'
+#' @export
 get_badge <- function(
-
-  label = "shields.io",
-  message = "badge",
-  color = "ff0000",
-  style = "flat",
-  label_color  = NULL,
-  md_link = NULL,
-  link_left = NULL,
-  link_right = NULL,
-  logo_simple = NULL,
-  logo_color = NULL,
-  logo_width = NULL,
-  logo_path = NULL,
-  ext_override = NULL,
-  browser_preview = TRUE,
-  include_md = TRUE,
-  to_clipboard = TRUE
-
+    label = "shields.io",
+    message = "badge",
+    color = "ff0000",
+    style = "flat",
+    label_color  = NULL,
+    md_link = NULL,
+    link_left = NULL,
+    link_right = NULL,
+    logo_simple = NULL,
+    logo_color = NULL,
+    logo_width = NULL,
+    logo_path = NULL,
+    ext_override = NULL,
+    browser_preview = TRUE,
+    include_md = TRUE,
+    to_clipboard = TRUE
 ) {
 
-  # Stop if out-of-scope style
   if (!style %in% c("plastic", "flat", "for-the-badge", "social")) {
     stop(
       paste(
         "The 'style' argument must be one of 'plastic', 'flat',",
         "'for-the-badge', or 'social'"
-      )
+      ),
+      call. = FALSE
     )
   }
 
-  # Warning if the logo colour is set without specifying a logo
   if (is.null(logo_simple) & !is.null(logo_color)) {
     warning("You set 'logo_color' without providing 'logo_simple'")
   }
 
-  # Warning if a link is provided for the Markdown output without specifying
-  # that you actually want Markdown output
   if (include_md == FALSE & !is.null(md_link)) {
     warning(
       paste(
@@ -97,7 +99,6 @@ get_badge <- function(
     )
   }
 
-  # Replace text elements
   label <- gsub("-", "--", label)
   label <- gsub("_", "__", label)
   label <- gsub(" ", "_", label)
@@ -105,32 +106,23 @@ get_badge <- function(
   message <- gsub("_", "__", message)
   message <- gsub(" ", "_", message)
 
-  # Generate basic badge
   badge_url <- paste0(
     "https://img.shields.io/badge/",
-    label, "-",       # text for left side
-    message, "-",     # text for right side
-    color,            # background color for the right side
-    "?style=", style  # style
+    label, "-",
+    message, "-",
+    color,
+    "?style=", style
   )
 
-  # Background color for the left side
-  if(!is.null(label_color)) {
+  if (!is.null(label_color)) {
     badge_url <- paste0(badge_url, "&labelColor=", label_color)
   }
 
-  # Add a link to the left side of the badge
-  if(!is.null(link_left)) {
-    badge_url <- paste0(badge_url, "&link=", link_left)
-  }
-
-  # Add a link to the right side of the badge
-  if(!is.null(link_right)) {
-    badge_url <- paste0(badge_url, "&link=", link_right)
-  }
+  if (!is.null(link_left)) badge_url <- paste0(badge_url, "&link=", link_left)
+  if (!is.null(link_right)) badge_url <- paste0(badge_url, "&link=", link_right)
 
   # Add named logo from https://simpleicons.org/
-  if(!is.null(logo_simple)) {
+  if (!is.null(logo_simple)) {
 
     logo_simple <- gsub(" ", "-", logo_simple)  # replace spaces with hyphens
     badge_url <- paste0(badge_url, "&logo=", logo_simple)
@@ -145,52 +137,43 @@ get_badge <- function(
   # Convert logo path to base64
   if (!is.null(logo_path)) {
 
-    # Encode
     logo_path_64 <- base64enc::base64encode(logo_path)
 
-    # Add path to badge URL
-    if (is.null(ext_override)) {
+    badge_url <- paste0(
+      badge_url,
+      "&logo=data:image/",
+      tools::file_ext(gsub("/$", "", logo_path)),
+      ";base64,", logo_path_64
+    )
+
+    if (!is.null(ext_override)) {
       badge_url <- paste0(
         badge_url,
         "&logo=data:image/",
-        tools::file_ext(gsub("/$", "", logo_path)),  # file extension
-        ";base64,", logo_path_64
-      )
-    } else if (!is.null(ext_override)) {
-      badge_url <- paste0(
-        badge_url,
-        "&logo=data:image/",
-        ext_override,  # file extension override
+        ext_override,
         ";base64,", logo_path_64
       )
     }
 
   }
 
-  # Spacing width for the logo
   if (!is.null(logo_width)) {
-    badge_url <- paste0(badge_url, "&logoWidth=", logo_width)
+    badge_url <- paste0(badge_url, "&logoWidth=", logo_width)  # logo spacing
   }
 
-  # Open the badge URL in your browser
   if (browser_preview == TRUE) {
     utils::browseURL(badge_url)
     cat("Opening browser to display badge preview\n")
   }
 
-  # Make ready for use in Markdown
   if (include_md == TRUE) {
-
-    if (!is.null(md_link)) {  # if a link was provided in md_link
+    if (!is.null(md_link)) {
       badge_url <- paste0("[![](", badge_url, ")](", md_link, ")")
-    } else {                  # if a link wasn't provided in md_link
-      # badge_url <- paste0("![](", badge_url, ")")
     }
-
   }
 
-  # Write the badge URL to the clipboard
-  if (to_clipboard == TRUE){
+  if (to_clipboard == TRUE) {
+
     clipr::write_clip(badge_url, return_new = TRUE)
 
     if (include_md == TRUE) {
@@ -201,6 +184,70 @@ get_badge <- function(
 
   }
 
-  return(badge_url)
+  badge_url
+
+}
+
+#' Generate A Static shields.io CRAN DOI Badge
+#'
+#' Build a URL string that generates a \href{https://shields.io/}{shields.io}
+#' metadata badge to display your CRAN package's DOI. For convenience, this
+#' function allows you to embed the URL in Markdown with a link and copies this
+#' to the clipboard for use in a README or elsewhere.
+#'
+#' @param package_name Single character string. Must be a package named on CRAN.
+#' @param ... Optional arguments passed to \code{\link{get_badge}}.
+#'
+#' @return A Markdown text string.
+#'
+#' @examples
+#' get_cran_doi_badge(
+#'   package_name = "datapasta",
+#'   browser_preview = FALSE,
+#'   to_clipboard = FALSE
+#' )
+#'
+#' @export
+get_cran_doi_badge <- function(package_name, ...) {
+
+  if (!is.character(package_name) || length(package_name) != 1) {
+    stop(
+      "The 'package_name' argument must be character class of length 1.",
+      call. = FALSE
+    )
+  }
+
+  db <- tools::CRAN_package_db()
+  db_package <- db[db$Package == package_name, c("Package", "DOI")]
+
+  package_exists <- length(db_package[["Package"]]) != 0
+
+  if (!package_exists) {
+    stop(
+      "The 'package_name' argument must contain the name of a CRAN package.",
+      call. = FALSE
+    )
+  }
+
+  package_doi <- db_package[["DOI"]]
+  doi_exists <- !is.na(package_doi)
+
+  if (!doi_exists) {
+    stop(
+      "A DOI does not yet exist for that CRAN package.",
+      call. = FALSE
+    )
+  }
+
+  doi_link <- paste0("https://doi.org/", package_doi)
+
+  get_badge(
+    label = "DOI",
+    message = package_doi,
+    color = "1f57b6",
+    md_link = doi_link,
+    link_right = doi_link,
+    ...
+  )
 
 }
