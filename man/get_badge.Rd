@@ -32,7 +32,8 @@ get_badge(
 one of hex, RGB, RGBA, HSL, HSLA or a CSS named color.}
 
 \item{style}{One of \code{"plastic"}, \code{"flat"}, \code{"for-the-badge"}
-or \code{"social"}. See examples on \href{https://shields.io/}{shields.io}.}
+or \code{"social"}. See examples on
+\href{https://shields.io/}{shields.io}.}
 
 \item{label_color}{The background color of the left side of the badge. Should
 be one of hex, RGB, RGBA, HSL, HSLA or a CSS named color.}
@@ -64,8 +65,8 @@ both.)}
 \code{gif} if you're using a favicon in \code{ico} format.) You're
 unlikely to need this argument.}
 
-\item{browser_preview}{Do you want to preview the badge in the browser? Requires
-an internet connection.}
+\item{browser_preview}{Do you want to preview the badge in the browser?
+Requires an internet connection.}
 
 \item{include_md}{Do you want to prepare the URL with Markdown syntax
 (\code{![]()}) to allow for direct copying into a Markdown file?
@@ -76,7 +77,7 @@ badge.}
 you can paste it elsewhere? Will overwrite your current clipboard items.}
 }
 \value{
-A text string.
+A Markdown text string.
 }
 \description{
 Build a URL string that generates a \href{https://shields.io/}{shields.io}
@@ -85,5 +86,12 @@ Markdown with a link and copies this to the clipboard for use in a README or
 elsewhere.
 }
 \examples{
-get_badge("Label", "Message", "blue", browser_preview = FALSE, to_clipboard = FALSE)
+get_badge(
+  label = "Label",
+  message = "Message",
+  color = "blue",
+  browser_preview = FALSE,
+  to_clipboard = FALSE
+)
+
 }

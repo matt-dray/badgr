@@ -11,41 +11,31 @@ will be provided as time
 allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 [![R build
 status](https://github.com/matt-dray/badgr/workflows/R-CMD-check/badge.svg)](https://github.com/matt-dray/badgr/actions)
-[![CodeFactor](https://www.codefactor.io/repository/github/matt-dray/badgr/badge)](https://www.codefactor.io/repository/github/matt-dray/badgr)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/badgr)](https://CRAN.R-project.org/package=badgr)
 [![rostrum.blog
 post](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&logo=data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/2020/05/08/readme-badge/)
 <!-- badges: end -->
 
-The goal of {badgr} is to use R to generate URLs for
-[shields.io](https://shields.io/) metadata badges that you can use in
-your repository’s README file or elsewhere.
-
-I’m not affiliated with the excellent [shields.io](https://shields.io/).
-You can [back or donate to them](https://opencollective.com/shields).
-Find out more from their [website](https://shields.io/),
-[Twitter](https://twitter.com/Shields_io),
-[Discord](https://discord.com/invite/HjJCwm5) or go to [the source
-code](https://github.com/badges/shields).
+Generate URLs for [shields.io](https://shields.io/) metadata
+badges—typically used in repository READMEs—using R.
 
 ## Installation
 
-You can install {badgr} from GitHub with:
+You can install {badgr} from
+[R-universe](https://ropensci.org/r-universe/) with:
 
 ``` r
-remotes::install_github("matt-dray/badgr")
+install.packages("badgr", repos = "https://matt-dray.r-universe.dev")
 ```
 
-The package seems to do what it’s supposed to, but there are no
-guarantees. [File an issue](https://github.com/matt-dray/badgr/issues)
-if you find any problems.
+Please [file an issue](https://github.com/matt-dray/badgr/issues) with
+your ideas or to report bugs.
 
 ## Examples
 
 1.  Simple: bare bones functionality
 2.  More complex: introducing a logo and changing the style
 3.  Custom logo: adding your own logo
+4.  A CRAN package DOI badge
 
 ### 1. Simple
 
@@ -66,22 +56,22 @@ The output looks like this:
 
 ``` r
 badge
-#> [1] "![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat)]"
+#> [1] "https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat"
 ```
 
-Which when rendered, looks like this:
+Which looks like this when rendered in your README file:
 
 ![](https://img.shields.io/badge/Left_bit-Right_bit-blue?style=flat)
 
 ### 2. More complex
 
 Let’s use a few more arguments. For example, we can include a
-pre-prepared logo from <https://simpleicons.org/> and provide a link
-that will be added to the Markdown, so clicking the badge will take you
-to that site.
+pre-prepared logo from [Simple Icons](https://simpleicons.org/) and
+provide a link that will be added to the Markdown, so clicking the badge
+will take you to that site.
 
 ``` r
-badge2 <- get_badge(
+get_badge(
   label = "Left bit",
   message = "Right bit",
   color = "red",
@@ -94,8 +84,6 @@ badge2 <- get_badge(
   browser_preview = FALSE,
   to_clipboard = FALSE
 )
-
-badge2
 #> [1] "[![](https://img.shields.io/badge/Left_bit-Right_bit-red?style=for-the-badge&labelColor=blue&logo=RStudio&logoColor=white&logoWidth=20)](https://shields.io)"
 ```
 
@@ -108,8 +96,9 @@ argument.
 
 ### 3. Custom logo
 
-What if you don’t want to use a logo from <https://simpleicons.org/>?
-You can use your own. Here, for example, I’m using [a small
+What if you don’t want to use a logo from [Simple
+Icons](https://simpleicons.org/)? You can use your own. Here, for
+example, I’m using [a small
 gif](https://raw.githubusercontent.com/matt-dray/rostrum-blog/master/static/images/favicon.gif)
 of the logo from [my blog](https://www.rostrum.blog/).
 
@@ -117,7 +106,7 @@ of the logo from [my blog](https://www.rostrum.blog/).
 # Path to custom logo
 logo <- "https://raw.githubusercontent.com/matt-dray/rostrum-blog/master/static/images/favicon.gif"
 
-badge3 <- get_badge(
+get_badge(
   label = "rostrum.blog",
   message = "post",
   color = "008900",  # color can be supplied as hex
@@ -127,14 +116,14 @@ badge3 <- get_badge(
   browser_preview = FALSE,
   to_clipboard = FALSE
 )
-
-badge3
 #> [1] "[![](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&logo=data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/)"
 ```
 
-Which looks like this (note that the image is subtly animated!):
+Which looks like this:
 
 [![](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&logo=data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/)
+
+The image will be subtly animated, depending on your browser.
 
 Again, you can click this badge to be taken to the link specified in
 `md_link`, i.e. <https://www.rostrum.blog/>.
@@ -146,7 +135,42 @@ characters. This is the result of converting the image into
 `base64enc::base64encode()`. This is a requirement for embedding a
 custom icon into a shields.io badge.
 
-# Similar projects
+### 4. CRAN DOI
+
+CRAN added [DOIs](https://www.doi.org/) to packages in mid-2024, which
+can be fetched with `tools::CRAN_package_db()`. There’s a dedicated
+{badgr} function to generate a DOI badge for a package, assuming the
+package is on CRAN and has a DOI recorded.
+
+You only need to supply a package name, but you can also use additional
+arguments from `get_badge()` if you wish.
+
+``` r
+get_cran_doi_badge(
+  package_name = "datapasta",
+  browser_preview = FALSE,
+  to_clipboard = FALSE
+)
+#> [1] "[![](https://img.shields.io/badge/DOI-10.32614/CRAN.package.datapasta-1f57b6?style=flat&link=https://doi.org/10.32614/CRAN.package.datapasta)](https://doi.org/10.32614/CRAN.package.datapasta)"
+```
+
+It looks like this:
+
+[![](https://img.shields.io/badge/DOI-10.32614/CRAN.package.datapasta-1f57b6?style=flat&link=https://doi.org/10.32614/CRAN.package.datapasta)](https://doi.org/10.32614/CRAN.package.datapasta)
+
+Click it to resolve the DOI, which takes you to the CRAN page for the
+package. And yes, that tasteful blue is sampled from the R logo.
+
+## Disclaimer
+
+I’m not affiliated with the excellent [shields.io](https://shields.io/).
+You can [back or donate to them](https://opencollective.com/shields).
+Find out more from their [website](https://shields.io/),
+[Twitter](https://twitter.com/Shields_io),
+[Discord](https://discord.com/invite/HjJCwm5) or go to [the source
+code](https://github.com/badges/shields).
+
+## Similar projects
 
 Somehow I missed the existence of [the {badger}
 package](https://github.com/GuangchuangYu/badger) by [Guangchuang

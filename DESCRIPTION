@@ -1,18 +1,16 @@
 Package: badgr
-Version: 0.1.1
 Title: Create A shields.io Badge URL
-Description: Build A URL For A Custom shields.io Badge To Use In You Project's
-    README File Or Elsewhere.
-Authors@R: person(
-    "Matt", "Dray", 
-    email = "mwdray@gmail.com",
-    role = c("aut", "cre"))
+Version: 0.2
+Authors@R: 
+    person("Matt", "Dray", , "mwdray@gmail.com", role = c("aut", "cre"))
+Description: Build a URL for a custom shields.io badge to use in your
+    project's README file or elsewhere.
+License: MIT + file LICENSE
+Imports: 
+    base64enc,
+    clipr
 Encoding: UTF-8
+Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
-Imports: 
-    clipr,
-    base64enc
-License: MIT + file LICENSE
-Language: en-GB
+RoxygenNote: 7.3.1
